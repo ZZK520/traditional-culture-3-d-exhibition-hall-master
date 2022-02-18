@@ -1,0 +1,50 @@
+/* 首页消息 */
+#blockerWrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: block;
+    background-image: url("../images/index.jpeg");
+    background-size:cover;
+    z-index: 100;
+    user-select: none;
+    animation:loading 5s linear;
+}
+
+@keyframes loading {
+    from {opacity: 1;}
+    to{opacity: 0;}
+}
+#blocker {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+
+}
+#blocker #instructions {
+    width: 400px;
+    height:400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: #477066;
+    font-family: Arial;
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: 1000;
+    cursor: pointer;
+}
+#blocker #instructions >.main-instruction{
+    font-size: 36px;
+}
+#blocker #instructions >.description{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}

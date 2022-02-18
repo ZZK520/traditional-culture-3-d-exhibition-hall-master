@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>传统文化3D展厅</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.2.0/aframe.min.js"></script> -->
+    <script src="./js/package/aframe.min.js"></script>
+
+    <script src="./js/package/aframe-physics-system.js"></script>
+    <script src="./js/package/aframe-extras.min.js"></script>
+    <script src="./js/package/aframe-look-at-component.min.js"></script>
+      <script src="./js/package/vue.min.js"></script>
+    <!-- <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script> -->
+
+    <!-- 工具库 -->
+    <script src="./js/utils/utils.js"></script>
+    <!-- /工具库 -->
+    <!-- 组件 -->
+    <script src="./js/component/random-color.component.js"></script>
+
+    <script src="./js/objects/maze-mazify.objects.js"></script>
+    <script src="./js/objects/portal.objects.js"></script>
+    <script src="./js/objects/character.objects.js"></script>
+    <script src="./js/objects/slogan.objects.js"></script>
+    <script src="./js/component/movement-link.component.js"></script>
+    <!-- /组件 -->
+    <link rel="stylesheet" href="./assets/css/popup.css">
+    <link rel="stylesheet" href="./assets/css/infomation-popup.css">
+    <link rel="stylesheet" href="./assets/css/iconfont.css">
+    <link rel="stylesheet" href="./assets/css/headpage.css">
+    <style>
+        #app {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <a-scene physics="gravity:-9.8;" id="my-scene">
+            <a-assets>
+                <!-- 展台资源 -->
+                <a-mixin id="stageMaterial" material="src:./assets/images/maze/Marble.jpg"></a-mixin>
+                <!-- /展台资源 -->
+
+                <!-- 地板资源 -->
+                <img id="ground" src="./assets/images/maze/floor.jpg">
+                <img id="pavement" src="./assets/images/maze/pavement.jpg" />
+                <img id="floor-perfect" src="./assets/images/floor-perfect.jpg" />
+                <img id="black-floor" src="./assets/images/sky.jpg" />
+                <img id="fireworks" src="./assets/images/sky-2.jpeg" />
+                <img id="fireworks-2" src="./assets/images/maze/2048x1536-milky-way-galaxy_1574942893.jpg" />
+
+                <!-- /地板资源 -->
+
+                <!-- 外景 -->
+                <!-- <a-assets-item id="ufo" src="./assets/models/objects/ufo/ufo6.glb"></a-assets-item> -->
+                <a-assets-item id="egg-1" src="./assets/models/objects/people/1.glb"></a-assets-item>
+                <a-assets-item id="egg-2" src="./assets/models/objects/people/2.glb"></a-assets-item>
+                <a-assets-item id="egg-3" src="./assets/models/objects/people/3.glb"></a-assets-item>
+                <a-assets-item id="egg-4" src="./assets/models/objects/people/4.glb"></a-assets-item>
+                <a-assets-item id="egg-5" src="./assets/models/objects/people/5.glb"></a-assets-item>
+                <!-- /外景 -->
+
+                <!-- 外饰(墙壁等) -->
+                <img id="tiger" src="./assets/images/tiger.jpg" />
+
+                <img id="pavement" src="./assets/images/maze/pavement.jpg" />
+                <img id="brick-wall-1" src="./assets/images/maze/floor.jpg" />
+                <img id="brick-wall-2" src="./assets/images/brick-wall-2.jpg" />
+                <img id="brick-02" src="./assets/images/maze/brick-02.jpg" />
+                <img id="ball" src="./assets/images/maze/wall.jpg" />
+                <img id="red-carpet" src="./assets/images/maze/red-carpet.jpg" />
+                <img id="start" src="./assets/images/maze/start.jpg" />
+                <img id="finish" src="./assets/images/maze/finish.jpg" />
+                <img id="boxTexture" src="./assets/images/wrapTexture.png">
+                <!-- /外饰(墙壁等) -->
+
+
+
+                <!-- 节日模型资源 -->
+
+                <!-- 1-春节 -->
+                <a-asset-item id="chunjie" src="./assets/models/scene/festivals/chunjie/lantern.glb">
+                </a-asset-item>
+                <!-- 1-春节 -->
+
+                <!-- 2-元宵节 -->
+                <a-asset-item id="yuanxiao" src="./assets/models/scene/festivals/yuanxiao/yuanxiao-2.glb">
+                </a-asset-item>
+                <!-- 2-元宵节 -->
+
+                <!-- 3-上巳节 -->
+                <!-- <a-asset-item id="shangsi" src="./assets/models/scene/festivals/shangsi/grass-1.glb">
+                </a-asset-item> -->
+                <a-asset-item id="shangsi" src="./assets/models/scene/festivals/shangsi/grass-2.glb">
+                </a-asset-item>
+                <!-- /3-上巳节 -->
+
+                 <!-- 4-清明节 -->
+                 <a-asset-item id="qingming" src="./assets/models/scene/festivals/qingming/willow.glb">
+                </a-asset-item>
+                <!-- /4-清明节 -->
+
+                <!-- 5-端午节 -->
+                <!-- <a-asset-item id="qixi" src="./assets/models/scene/festivals/qixi/bird.glb">
+                </a-asset-item> -->
+                <a-asset-item id="zongzi" src="./assets/models/scene/festivals/duanwu/zongzi-4.glb">
+                </a-asset-item>
+                <a-asset-item id="steamer" src="./assets/models/scene/festivals/duanwu/steamer.glb">
+                </a-asset-item>
+                <!-- /5-端午节 -->
+
+                <!-- 6-七夕节 -->
+                <!-- <a-asset-item id="qixi" src="./assets/models/scene/festivals/qixi/bird.glb">
+                </a-asset-item> -->
+                <a-asset-item id="qixi" src="./assets/models/scene/festivals/qixi/Parrot.glb">
+                </a-asset-item>
+                <!-- /6-七夕节 -->
+
+                <!-- 7-中元节 -->
+                <a-asset-item id="zhongyuan" src="./assets/models/scene/festivals/zhongyuan/zhongyuan.glb">
+                </a-asset-item>
+                <!-- /7-中元节 -->
+
+                <!-- 8-中秋 -->
+                <a-asset-item id="zhongqiu" src="./assets/models/scene/festivals/zhongqiu/zhongqiu-3.glb">
+                </a-asset-item>
+                <!-- /8-中秋 -->
+
+                <!-- 9-重阳节 -->
+                <a-asset-item id="chongyang" src="./assets/models/scene/festivals/chongyang/chongyang-4.glb">
+                </a-asset-item>
+                <!-- /9-重阳节 -->
+
+                <!-- 10-冬至 -->
+                <a-asset-item id="dongzhi" src="./assets/models/scene/festivals/dongzhi/dongzhi.glb">
+                </a-asset-item>
+                <!-- /10-冬至 -->
+
+                <!-- 11-除夕 -->
+                <a-asset-item id="chuxi" src="./assets/models/scene/festivals/chuxi/nianyefan2.glb">
+                </a-asset-item>
+                <!-- /11-除夕 -->
+
+                
+                <!-- /节日模型资源 -->
+
+                <!-- 人物模型资源 -->
+                <a-asset-item id="avatar"
+                    src="./assets/models/objects/bendy_and_the_ink_machine_-vr_chat_avatar/avatar.glb"></a-asset-item>
+                <a-asset-item id="avatar-2" src="./assets/models/objects/amongus_1.glb"></a-asset-item>
+                <!-- /人物模型资源 -->
+            </a-assets>
+
+            <!-- 介绍页 -->
+            <div id="blockerWrapper">
+                <!-- <div id="blocker">
+                    <div id="instructions">
+                        <div class="description">
+                            <span>欢迎来到传统文化3D展厅</span>
+                        </div>
+                        <span>移动: w</span>
+                        <span>旋转: ad</span>
+                    </div>
+                </div> -->
+            </div>
+            <!-- 介绍页 -->
+
+            <!-- 围墙 -->
+            <a-entity mazify> </a-entity>
+            <!-- /围墙 -->
+
+            <!-- 飞碟 -->
+            <!-- <a-gltf-model
+                animation="property: position; to: 0 18 -30; dur: 3000; easing: linear; loop: true;dir:alternate"
+                src="#ufo" position="0 20 -30" rotation="40 0 0" scale="5 5 5" static-body></a-gltf-model> -->
+            <!-- /飞碟 -->
+
+
+            <!-- <a-sky src="#fireworks" repeat="10 10 10"></a-sky> -->
+            <a-sky src="#fireworks-2" repeat="10 10 10"></a-sky>
+
+            <!-- 地面 -->
+            <a-box static-body width="100" height="0.2" depth="100" static-body position="0 -0.3 0" color="#52A257">
+            </a-box>
+            <a-plane src="#brick-wall-1" scale="50 50 1" repeat="10 10 10" rotation="-90 0 0">
+            </a-plane>
+            <!-- /地面 -->
+
+            <!-- 物品 -->
+            <a-entity class="objects" :scale="proportionalScale">
+                <a-entity position="-6 0 -1">
+                    <a-entity position="-3 0.5 -16">
+                        <a-box scale="1.5 2 1.5" static-body="shape:box;" visible="false" :id="1"
+                            portal="popup:.infomations-moving-zone">
+                        </a-box>
+                        <a-box color="#c24545" scale="3 1 3"></a-box>
+                        <a-gltf-model src="#egg-5" position="0 0.5 0"></a-gltf-model>
+                        <a-entity position="0 3 0" look-at="#player"
+                            text="value: Welcome!; color: #212121; align: center; wrapCount: 9"
+                            geometry="primitive: plane; width: 1; height: 1"
+                            material="color: #c24545; shader: flat; visible: true">
+                        </a-entity>
+                    </a-entity>
+                    <a-entity position="0 0.5 -16">
+                        <a-box scale="1.5 2 1.5" static-body="shape:box;" visible="false" :id="2"
+                            portal="popup:.infomations-moving-zone">
+                        </a-box>
+                        <a-box color="#c24545" scale="3 1 3"></a-box>
+                        <a-gltf-model src="#egg-1" position="0 1 0"></a-gltf-model>
+
+                    </a-entity>
+
+                    <a-entity position="3 0.5 -16">
+                        <a-box scale="1.5 2 1.5" static-body="shape:box;" visible="false" :id="3"
+                            portal="popup:.infomations-moving-zone">
+                        </a-box>
+                        <a-box color="#c24545" scale="3 1 3"></a-box>
+                        <a-gltf-model src="#egg-2" position="0 0.7 0"></a-gltf-model>
+
+                    </a-entity>
+                    <a-entity position="6 0.5 -16">
+                        <a-box scale="1.5 2 1.5" static-body="shape:box;" visible="false" :id="4"
+                            portal="popup:.infomations-moving-zone">
+                        </a-box>
+                        <a-box color="#c24545" scale="3 1 3"></a-box>
+                        <a-gltf-model src="#egg-3" position="0 0.7 0"></a-gltf-model>
+                    </a-entity>
+                    <a-entity position="9 0.5 -16">
+                        <a-box scale="1.5 2 1.5" static-body="shape:box;" visible="false" :id="5"
+                            portal="popup:.infomations-moving-zone">
+                        </a-box>
+                        <a-box color="#c24545" scale="3 1 3"></a-box>
+                        <a-gltf-model src="#egg-4" position="0 0.5 0"></a-gltf-model>
+                    </a-entity>
+                </a-entity>
+
+                <!-- 节日展台 -->
+                <a-entity v-for="(gesture,index) in gesturesStr" :class="['stage', 'stage-'+gesture.id]"
+                    :position="gesture.position">
+                    <a-box color="#F4F4F4" scale="2.5 2.5 2" mixin="stageMaterial"></a-box>
+                    <a-box scale="1.5 2 1.5" visible="false" static-body="shape:box;" portal :id="gesture.id">
+                    </a-box>
+                </a-entity>
+                <!-- /节日展台 -->
+
+                <!-- 节日模型资源 -->
+
+
+                <!-- 1-春节 -->
+                <a-entity position="6 1.4 6">
+                    <a-gltf-model src="#chunjie"></a-gltf-model>
+
+                </a-entity>
+                <!-- 1-春节 -->
+
+                <!-- 2-元宵节 -->
+                <a-entity position="10 1.6 0.5" scale="0.5 0.5 0.5">
+                    <a-gltf-model src="#yuanxiao"></a-gltf-model>
+
+                </a-entity>
+                <!-- /2-元宵节 -->
+
+                <!-- 3-上巳节 -->
+                <a-entity position="5 1.3 -2.5">
+                    <a-gltf-model src="#shangsi"></a-gltf-model>
+                </a-entity>
+                <!-- /3-上巳节 -->
+
+                 <!-- 4-清明节 -->
+                 <a-entity position="11 1 -6" rotation="0 90 0" scale="0.6 0.6 0.6">
+                    <a-gltf-model src="#qingming"></a-gltf-model>
+                </a-entity>
+                <!-- /4-清明节 -->
+
+
+                <!-- 5-端午 -->
+                <a-entity position="4.5 1.2 -7.5" scale="0.8 0.8 0.8">
+                    <a-gltf-model src="#zongzi" position="-0.5 0 0.5" rotation="0 180 0"></a-gltf-model>
+                    <a-gltf-model src="#zongzi" position="-0.5 0 0" rotation="0 180 0"></a-gltf-model>
+                    <a-gltf-model src="#zongzi" position="-0.5 0 -0.5"></a-gltf-model>
+                    <a-gltf-model src="#zongzi" position="-1 -0.2 -1.8" rotation="0 45 0"></a-gltf-model>
+                    <a-gltf-model src="#steamer"></a-gltf-model>
+                </a-entity>
+                <!-- /5-端午 -->
+
+                <!-- 6-七夕节 -->
+                <a-entity position="-1 2 -11" scale="0.8 0.8 0.8">
+                    <a-gltf-model src="#qixi" animation-mixer></a-gltf-model>
+
+                </a-entity>
+                <!-- /6-七夕节 -->
+
+
+                <!-- 7-中元节 -->
+                <a-entity position="-7 1.6 7">
+                    <a-gltf-model src="#zhongyuan" animation-mixer></a-gltf-model>
+                </a-entity>
+                <!-- /7-中元节 -->
+
+                  <!-- 8-中秋 -->
+                  <a-entity position="-2 1.5 -3" scale="0.7 0.7 0.7">
+                    <a-gltf-model src="#zhongqiu" ></a-gltf-model>
+                </a-entity>
+                <!-- /8-中秋 -->
+
+                <!--9-重阳节 -->
+                <a-entity position="-10 1.6 -1" scale="1 1 1">
+                    <a-gltf-model src="#chongyang" position="0 -0.5 0"></a-gltf-model>
+                    <a-gltf-model src="#chongyang" position="0.5 -0.5 0" rotation="10 0 0"></a-gltf-model>
+                    <a-gltf-model src="#chongyang" position="0.5 -0.5 0.5" rotation="-10 0 0"></a-gltf-model>
+                </a-entity>
+                <!-- /9-重阳节 -->
+
+                <!-- 10-冬至 -->
+                <a-entity position="-1 1.4 3" scale="0.3 0.3 0.3">
+                    <a-gltf-model src="#dongzhi"></a-gltf-model>
+                </a-entity>
+                <!-- /10-冬至 -->
+
+                <!-- 11-除夕 -->
+                <a-entity position="-2 1.6 7" scale="0.2 0.2 0.2">
+                    <a-gltf-model src="#chuxi"></a-gltf-model>
+                </a-entity>
+                <!-- /11-除夕 -->
+
+                <!-- /节日模型资源 -->
+
+            </a-entity>
+
+            <!-- /物品 -->
+            <!-- 人物模型主体 -->
+            <a-entity id="playerContainer" position="0 0.5 0">
+                <!-- 初始位置：position="0 0 12" -->
+                <!-- 人物信息：position="-6 0 -12" -->
+                <a-entity id="player" kinematic-body character position="0 0 12">
+                    <a-entity class="avatar">
+                        <a-entity position="0 0 0.1" scale="0.5 0.5 0.5">
+                            <a-sphere class="head" scale="0.45 0.5 0.4" color="#ffff00">
+                            </a-sphere>
+                            <a-entity class="face" position="0 0.15 0">
+                                <a-sphere class="eye" color="#efefef" position="0.16 0.1 -0.35" scale="0.12 0.12 0.12">
+                                    <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2">
+                                    </a-sphere>
+                                </a-sphere>
+                                <a-sphere class="eye" color="#efefef" position="-0.16 0.1 -0.35" scale="0.12 0.12 0.12">
+                                    <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2">
+                                    </a-sphere>
+                                </a-sphere>
+                            </a-entity>
+                            <a-entity class="gun">
+                                <a-box position="0.51 -0.13 -0.29" scale="0.19 0.23 0.67" color="#000"></a-box>
+                                <a-entity class="gun-tip" position="0.51 -0.10 -0.64"></a-entity>
+                            </a-entity>
+                            <a-entity class="avatarId" text="value: You;side:double;height:20;width:20;align:center;
+                            color:#ff0000" position="0 1 0"></a-entity>
+                        </a-entity>
+
+                    </a-entity>
+                    <a-entity id="rig" movement-link>
+                        <a-camera id="camera" wasd-controls-enabled="false" look-controls-enabled="false"></a-camera>
+                    </a-entity>
+                </a-entity>
+            </a-entity>
+            <!-- /人物模型主体 -->
+
+            <!-- 弹窗 -->
+            <div class="moving-zone">
+                <div class="popup">
+                    <div class="close">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-guanbi"></use>
+                        </svg>
+                    </div>
+
+                    <div class="popup-content">
+                        <img class="cover" :src="popups[popupsId].imgSrc" alt="">
+                        <div class="popup-text">
+                            <div class="header-title">
+                                <h4>{{popups[popupsId].title}}</h4>
+                                <h5>{{popups[popupsId].time}}</h5>
+                            </div>
+                            <div class="content">
+                                <p class="content-text">
+                                    {{popups[popupsId].description}}</p>
+                                <a :href="popups[popupsId].link" target="_blank" class="link">查看更多</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /弹窗 -->
+
+            <!-- 信息框 -->
+
+            <!-- TODO infomation 彩蛋人物信息 -->
+            <div class="infomations-moving-zone">
+                <div class="close-infomations">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-guanbi"></use>
+                    </svg>
+                </div>
+                <div class="infomations">
+                    <div class="header-cover">
+                        <img class="cover" :src="infomations[userId].profile_pic">
+                    </div>
+                    <div class="info">
+                        <h1>{{infomations[userId].name}}</h1>
+                        <p>{{infomations[userId].profile}}</p>
+                    </div>
+                    <ul class="keyValue">
+                        <div class="blog-link">
+                            <div v-show="infomations[userId].wx" :title="infomations[userId].wx">
+                                <a href="#">
+                                    <img id="blog-wx"
+                                        src="./assets/icons/wechat.svg"
+                                        :alt="infomations[userId].wx">
+                                </a>
+                            </div>
+                            <div v-show="infomations[userId].qq" :title="infomations[userId].qq">
+                                <a href="#">
+                                    <img id="blog-qq"
+                                        src="./assets/icons/qq.svg"
+                                        :alt="infomations[userId].qq">
+                                </a>
+                            </div>
+                            <div v-show="infomations[userId].github">
+                                <a :href="infomations[userId].github" target="_blank">
+                                    <img id="blog-github"
+                                        src="./assets/icons/github.svg"
+                                        :alt="infomations[userId].github">
+                                </a>
+                            </div>
+                            <div v-show="infomations[userId].juejin">
+                                <a :href="infomations[userId].juejin" target="_blank">
+                                    <img id="blog-juejin"
+                                        src="./assets/icons/icon＼盘后掘金.svg"
+                                        :alt="infomations[userId].juejin">
+                                </a>
+                            </div>
+                            <div v-show="infomations[userId].csdn">
+                                <a :href="infomations[userId].csdn" target="_blank">
+                                    <img id="blog-csdn"
+                                        src="./assets/icons/csdn.svg"
+                                        :alt="infomations[userId].csdn">
+                                </a>
+                            </div>
+
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <!-- /信息框 -->
+
+        </a-scene>
+    </div>
+
+  
+    <script src="./js/package/jquery.min.js"></script>
+    <script src="./js/popup.js"></script>
+    <script src="./js/iconfont.js"></script>
+    <!-- 首页蒙层 -->
+    <script src="./js/objects/scene.objects.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                //展台数据
+                gestures: [
+                    { id: 1, slogan: { name: '春节', time: "农历一月一日" }, position: [6, 0, 6] },
+                    { id: 2, slogan: { name: '元宵节', time: "正月十五" }, position: [10, 0, 1] },
+                    { id: 3, slogan: { name: '上巳节', time: "三月初三" }, position: [5, 0, -2] },
+                    { id: 4, slogan: { name: '清明节', time: "公历四月五日" }, position: [11, 0, -6] },
+                    { id: 5, slogan: { name: '端午节', time: "五月初五" }, position: [4, 0, -8] },
+                    { id: 6, slogan: { name: '七夕节', time: "农历七月初七" }, position: [-1, 0, -11] },
+                    { id: 7, slogan: { name: '中元节', time: "农历七月十五" }, position: [-7, 0, 7] },
+                    { id: 8, slogan: { name: '中秋节', time: "农历八月十五" }, position: [-3, 0, -3] },
+                    { id: 9, slogan: { name: '重阳节', time: "农历九月初九" }, position: [-10, 0, -1] },
+                    { id: 10, slogan: { name: '冬至', time: "公历12月21-23日" }, position: [-1, 0, 2] },
+                    { id: 11, slogan: { name: '除夕', time: "农历十二月廿九或三十" }, position: [-2, 0, 7] }
+                ],
+                //比例尺
+                proportionalScale: "1 1 1",
+                // 弹窗数据
+                popups: {
+                    "1": {
+                        imgSrc: './assets/images/festivals/ex-spring.jpg',
+                        title: "春节",
+                        time: "一月初一",
+                        description: "春节（Spring Festival），即中国农历新年，俗称新春、新岁、岁旦等，口头上又称过年、过大年",
+                        link: "https://baike.baidu.com/item/%E6%98%A5%E8%8A%82/136876?fr=aladdin"
+                    },
+                    "2": {
+                        imgSrc: './assets/images/festivals/ex-yuanxiao.jpg',
+                        title: "元宵节",
+                        time: "正月十五",
+                        description: "元宵节，中国的传统节日之一，又称上元节、小正月、元夕或灯节，时间为每年农历正月十五。",
+                        link: "https://baike.baidu.com/item/%E5%85%83%E5%AE%B5%E8%8A%82/118213?fr=aladdin"
+                    },
+                    "3": {
+                        imgSrc: './assets/images/festivals/ex-shangsi.jpg',
+                        title: "上巳节",
+                        time: "三月初三",
+                        description: "上巳节是古代举行“祓除畔浴”活动中最重要的节日，人们结伴去水边沐浴，称为“祓禊”，此后又增加了祭祀宴饮、曲水流觞、郊外游春等内容。",
+                        link: "https://baike.baidu.com/item/%E4%B8%8A%E5%B7%B3%E8%8A%82/1908577?fr=aladdin"
+                    },
+                    "4": {
+                        imgSrc: './assets/images/festivals/ex-qingming.jpg',
+                        title: "清明节",
+                        time: "公历四月五日",
+
+                        description: "清明节，又称踏青节、行清节、三月节、祭祖节等，节期在仲春与暮春之交。清明节源自上古时代的祖先信仰与春祭礼俗，兼具自然与人文两大内涵，既是自然节气点，也是传统节日。扫墓祭祖与踏青郊游是清明节的两大礼俗主题，这两大传统礼俗主题在中国自古传承，至今不辍",
+                        link: "https://baike.baidu.com/item/%E6%B8%85%E6%98%8E%E8%8A%82/137575?fr=aladdin"
+                    },
+                    "5": {
+                        imgSrc: './assets/images/festivals/ex-duanwu.jpg',
+                        title: "端午节",
+                        time: "五月初五",
+
+                        description: "端午节，又称端阳节、龙舟节、重午节、天中节等，是集拜神祭祖、祈福辟邪、欢庆娱乐和饮食为一体的民俗大节。端午节源于自然天象崇拜，由上古时代祭龙演变而来。",
+                        link: "https://baike.baidu.com/item/%E7%AB%AF%E5%8D%88%E8%8A%82/1054?fr=aladdin"
+                    },
+                    "6": {
+                        imgSrc: './assets/images/festivals/ex-qixi.jpg',
+                        title: "七夕节",
+                        time: "农历七月初七",
+
+                        description: "七夕节既是拜祭七姐的节日，也是爱情的节日，是一个以“牛郎织女”民间传说为载体，以祈福、乞巧、爱情为主题，以女性为主体的综合性节日。",
+                        link: "https://baike.baidu.com/item/%E4%B8%83%E5%A4%95%E8%8A%82/226647"
+                    },
+                    "7": {
+                        imgSrc: './assets/images/festivals/ex-zhongyuan.jpg',
+                        title: "中元节",
+                        time: "农历七月十五",
+
+                        description: "中元节，是道教名称，民间世俗称为七月半、七月十四、祭祖节，佛教则称为盂兰盆节。 [1]  节日习俗主要有祭祖、放河灯、祀亡魂、焚纸锭、祭祀土地等。",
+                        link: "https://baike.baidu.com/item/%E4%B8%AD%E5%85%83%E8%8A%82/22411"
+                    },
+                    "8": {
+                        imgSrc: './assets/images/festivals/ex-zhongqiu.jpg',
+                        title: "中秋节",
+                        time: "农历八月十五",
+
+                        description: "中秋节，又称祭月节、月光诞、月夕、秋节、仲秋节、拜月节、月娘节、月亮节、团圆节等，是中国民间的传统节日。中秋节源自天象崇拜，由上古时代秋夕祭月演变而来。中秋节自古便有祭月、赏月、吃月饼、玩花灯、赏桂花、饮桂花酒等民俗，流传至今，经久不息。",
+                        link: "https://baike.baidu.com/item/%E4%B8%AD%E7%A7%8B%E8%8A%82/128234?fr=aladdin"
+                    },
+                    "9": {
+                        imgSrc: './assets/images/festivals/ex-chongyang.jpg',
+                        title: "重阳节",
+                        time: "农历九月初九",
+
+                        description: "九九归真，一元肇始，古人认为九九重阳是吉祥的日子。古时民间在重阳节有登高祈福、拜神祭祖及饮宴祈寿等习俗。传承至今，又添加了敬老等内涵。登高赏秋与感恩敬老是当今重阳节日活动的两大重要主题。",
+                        link: "https://baike.baidu.com/item/%E9%87%8D%E9%98%B3%E8%8A%82/128301?fr=aladdin"
+                    },
+                    "10": {
+                        imgSrc: './assets/images/festivals/ex-dongzhi.jpg',
+                        title: "冬至",
+                        time: "公历12月21-23日",
+
+                        description: "冬至，又称日南至、冬节、亚岁等，兼具自然与人文两大内涵，既是二十四节气中一个重要的节气，也是中国民间的传统祭祖节日。冬至是四时八节之一，被视为冬季的大节日，在古代民间有“冬至大如年”的讲法。冬至习俗因地域不同而又存在着习俗内容或细节上的差异。在中国南方地区，有冬至祭祖、宴饮的习俗。在中国北方地区，每年冬至日有吃饺子的习俗。",
+                        link: "https://baike.baidu.com/item/%E5%86%AC%E8%87%B3/9381?fr=aladdin"
+                    },
+                    "11": {
+                        imgSrc: './assets/images/festivals/ex-chuxi.jpg',
+                        title: "除夕",
+                        time: "农历十二月廿九或三十",
+
+                        description: "除夕，为岁末的最后一天夜晚。岁末的最后一天称为“岁除”，意为旧岁至此而除，另换新岁。除，即去除之意；夕，指夜晚。“除夕”是岁除之夜的意思，又称大年夜、除夕夜、除夜等，时值年尾的最后一个晚上。除夕是除旧布新、阖家团圆、祭祀祖先的日子，与清明节、七月半、重阳节是中国民间传统的祭祖大节。除夕，在国人心中是具有特殊意义的，这个年尾最重要的日子，漂泊再远的游子也是要赶着回家去和家人团聚，在爆竹声中辞旧岁，烟花满天迎新春。",
+                        link: "https://baike.baidu.com/item/%E9%99%A4%E5%A4%95/128141?fr=aladdin"
+                    }
+                },
+                //默认显示的弹窗id
+                popupsId: 1,
+                colors: {
+                    "sloganName": "#FF5F01",
+                    "sloganTime": "#E3CACC"
+                },
+                // 个人信息数据
+                userId: 3,
+                infomations: {
+                    "1": {
+                        "name": "曹丽诗",
+                        "github": "https://github.com/xiaocao12306",
+                        "blog": "",
+                        "juejin": "https://juejin.cn/user/3342149723885038",
+                        "csdn": "https://blog.csdn.net/weixin_45898547?type=blog",
+                        "wx_oc_qr": "",
+                        "profile_pic": "./assets/images/infos/cls-profile.jpg",
+                        "qq": "3027478654",
+                        "wx": "18163489352",
+                        "profile": "一个普通的前端开发"
+                    },
+                    "2": {
+                        "name": "吴习源",
+                        "github": "https://github.com/RIOTSAKURA/",
+                        "blog": "",
+                        "juejin": "",
+                        "csdn": "https://blog.csdn.net/m0_50012276",
+                        "wx_oc_qr": "",
+                        "profile_pic": "./assets/images/infos/wxy-profile.jpg",
+                        "qq": "1192587294",
+                        "wx": "18932012105",
+                        "profile": "嗝"
+                    },
+                    "3": {
+                        "name": "朱志康",
+                        "github": "https://github.com/ZZK520",
+                        "blog": "",
+                        "juejin": "https://forum.juejin.cn/youthcamp/post/7049320314668318727?from=4",
+                        "csdn": "",
+                        "wx_oc_qr": "",
+                        "profile_pic": "./assets/images/infos/zzk-profile.jpg",
+                        "qq": "752330461",
+                        "wx": "19858119751",
+                        "profile": "热衷于技术学以致用(学习、生活)的前端开发"
+                    },
+                    "4": {
+                        "name": "陈雅琦",
+                        "github": "https://github.com/Kidoi",
+                        "blog": "",
+                        "juejin": "https://juejin.cn/user/3263820465446024",
+                        "csdn": "https://blog.csdn.net/Youkirrr_",
+                        "wx_oc_qr": "",
+                        "profile_pic": "./assets/images/infos/cyq-profile.jpg",
+                        "qq": "1132834498",
+                        "wx": "c1132834498",
+                        "profile": "keep going on."
+                    },
+                    "5": {
+                        "name": "袁杰",
+                        "github": "https://github.com/shimmeryy",
+                        "blog": "http://www.shimmery.cn/",
+                        "juejin": "",
+                        "csdn": "",
+                        "wx_oc_qr": "",
+                        "profile_pic": "./assets/images/infos/yj-profile.jpg",
+                        "qq": "63025407",
+                        "wx": "18788873360",
+                        "profile": "Everything that kills me makes me feel alive"
+                    }
+                }
+
+            },
+            computed: {
+                // 数组转为字符串
+                gesturesStr: function () {
+                    let gesturesStr = [];
+                    // console.log('this.gestures', this.gestures)
+                    for (const iterator of this.gestures) {
+                        let newIterator = iterator.position;
+                        // console.log('newIterator', newIterator);
+                        let str = newIterator.join(' ');
+                        gesturesStr.push({
+                            slogan: iterator.slogan,
+                            id: iterator.id,
+                            position: str
+                        })
+                    }
+                    // console.log(gesturesStr, 'gesturesStr');
+                    return gesturesStr;
+                },
+            },
+            methods: {
+                setSlogan() {
+                    const self = this;
+                    const loader = new THREE.FontLoader();
+                    const scene = document.querySelector('#my-scene').object3D;
+
+                    loader.load('./assets/fonts/FZCuHeiSongS-B-GB_Regular.json', function (font) {
+                        self.gestures.forEach(element => {
+                            let sloganName = element.slogan.name;
+                            let sloganTime = element.slogan.time;
+                            // console.log('sloganName', sloganName);
+                            // console.log('sloganTime', sloganTime);
+                            const textParams = {
+                                font: font,
+                                size: 0.5,
+                                height: 0.2,
+                                curveSegments: 12,
+                                bevelEnabled: true,
+                                bevelThickness: 0.03,
+                                bevelSize: 0.02,
+                                bevelOffset: 0,
+                                bevelSegments: 5
+                            };
+                            const textGeometry = new THREE.TextBufferGeometry(sloganName, textParams);
+                            const textMaterial = new THREE.MeshStandardMaterial({
+                                color: self.colors.sloganName,
+                                flatShading: true
+                            });
+                            const text = new THREE.Mesh(textGeometry, textMaterial);
+                            // 居中字体
+                            textGeometry.computeBoundingBox();
+                            // console.log(textGeometry.boundingBox)
+                            textGeometry.center();
+                            text.geometry.dispose();
+                            text.geometry = textGeometry;
+                            // console.error('text',text);
+                            // console.error('element.position', element.position);
+                            text.position.x = element.position[0];
+                            text.position.y = element.position[1] + 5;
+                            text.position.z = element.position[2];
+                            // text.scale.set(2, 2, 2);
+                            scene.add(text);
+
+                            const text2Geometry = new THREE.TextBufferGeometry(sloganTime, textParams);
+                            const text2Material = new THREE.MeshStandardMaterial({
+                                color: self.colors.sloganTime,
+                                flatShading: true
+                            });
+                            // const text2 = new THREE.Mesh(text2Geometry, text2Material);
+                            // // 居中字体
+                            // text2Geometry.computeBoundingBox();
+                            // // console.log(textGeometry.boundingBox)
+                            // text2Geometry.center();
+                            // text2.geometry.dispose();
+                            // text2.geometry = text2Geometry;
+                            // // console.error('text',text);
+                            // // console.error('element.position', element.position);
+                            // text2.position.x = element.position[0];
+                            // text2.position.y = element.position[1] + 3;
+                            // text2.position.z = element.position[2];
+                            // scene.add(text2);
+
+
+                        });
+
+                    });
+                }
+
+            },
+            mounted() {
+                setTimeout(() => {
+                }, 2000);
+                this.setSlogan();
+
+
+            }
+
+        })
+    </script>
+
+
+</body>
+
+</html>

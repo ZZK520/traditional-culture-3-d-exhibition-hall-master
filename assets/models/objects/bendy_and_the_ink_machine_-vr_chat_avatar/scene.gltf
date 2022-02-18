@@ -1,0 +1,315 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 6670,
+      "max": [
+        0.82289040088653564,
+        0.40137037634849548,
+        1.8192819356918335
+      ],
+      "min": [
+        -0.82289040088653564,
+        -0.40458720922470093,
+        -0.0020598401315510273
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 80040,
+      "componentType": 5126,
+      "count": 6670,
+      "max": [
+        0.99993348121643066,
+        0.99966526031494141,
+        1.0000087022781372
+      ],
+      "min": [
+        -0.99994206428527832,
+        -0.99995732307434082,
+        -1.0000094175338745
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 6670,
+      "max": [
+        0.96692997217178345,
+        0.97045999765396118
+      ],
+      "min": [
+        0.022619999945163727,
+        0.030969999730587006
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 38316,
+      "max": [
+        6669
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 1,
+      "max": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "min": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "type": "MAT4"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Miaru3d (https://sketchfab.com/juanmendoza)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/bendy-and-the-ink-machine-vr-chat-avatar-373e76820cca49dba60627f0db48f188",
+      "title": "Bendy and The Ink Machine -VR Chat Avatar"
+    },
+    "generator": "Sketchfab-8.77.1",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 153264,
+      "byteOffset": 0,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 53360,
+      "byteOffset": 153264,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 160080,
+      "byteOffset": 206624,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 64,
+      "byteOffset": 366704,
+      "byteStride": 64,
+      "name": "floatBufferViews"
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 366768,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/Bendy_baseColor.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "Bendy",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        },
+        "metallicFactor": 0.42854420731707316,
+        "roughnessFactor": 0.33098323170731708
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Bendy_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "RootNode (gltf orientation matrix)",
+      "rotation": [
+        -0.70710678118654746,
+        -0,
+        -0,
+        0.70710678118654757
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "RootNode (model correction matrix)"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "Root"
+    },
+    {
+      "children": [
+        4,
+        5
+      ],
+      "matrix": [
+        0.010000000000000002,
+        0,
+        0,
+        0,
+        0,
+        -0,
+        0.010000000000000002,
+        0,
+        0,
+        -0.010000000000000002,
+        -0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "Bendy_Armature"
+    },
+    {
+      "name": "Bendy_Armature_rootJoint"
+    },
+    {
+      "children": [
+        6
+      ],
+      "matrix": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        -2.0000000000000008e-05,
+        -100,
+        0,
+        0,
+        100,
+        -2.0000000000000008e-05,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "Bendy"
+    },
+    {
+      "mesh": 0,
+      "name": "Bendy_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "OSG_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "skins": [
+    {
+      "inverseBindMatrices": 4,
+      "joints": [
+        4
+      ],
+      "skeleton": 4
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    }
+  ]
+}
+
